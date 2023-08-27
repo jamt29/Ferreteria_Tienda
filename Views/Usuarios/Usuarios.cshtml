@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Identity;
+    @model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+    @inject UserManager<IdentityUser> userManager
+    
+
+
+
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.OcultarHeader = true;
+
+    }
+
+
+<div class="container mt-5">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td>
+                        @{
+                            var roles = await userManager.GetRolesAsync(item);
+                            var rol = roles.FirstOrDefault();
+                        }
+                        @rol
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-warning" data-toggle="modal" data-target="#myModal" onclick="setUserId('@item.Id')" data-userid="@item.Id">Cambiar rol</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar rol de usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Usuarios/CambiarRol" method="post">
+                    <input type="hidden" id="userIdInput" name="UserId" value="" />
+                    <select name="RoleId" class="form-control">
+                        @foreach (var role in ViewBag.rolesList)
+                        {
+                            <option value="@role.Id">@role.Name</option>
+                        }
+                    </select>
+                    <button class="btn btn-outline-secondary" type="submit">Guardar</button>
+                </form>
+
+        </div>
+    </div>
+</div>
+
+ <script>
+        function setUserId(userId) {
+            document.getElementById('userIdInput').value = userId;
+        }
+
+ </script>

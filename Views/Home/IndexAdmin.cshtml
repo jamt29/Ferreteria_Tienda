@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page admin";
+    ViewBag.OcultarHeader = true;
+}
+
+
+
+
+<partial name="_Panel" />
+
+
+
+
+
+
+
+<div class="container mt-5 align-content-center justify-content-center">
+    <canvas id="grafica"></canvas>
+</div>
+
+
+
+
+<script>
+
+    var ctx = document.getElementById('grafica').getContext('2d');
+    var cantidadProductos = @ViewBag.cantidadProductos;
+    var cantidadDepartamentos = @ViewBag.cantidadDepartamentos;
+
+    var data ={
+        labels: ['Productos', 'Categorias'],
+        datasets: [{
+            label: 'Cantidad',
+            data: [cantidadProductos, cantidadDepartamentos],
+            backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)'],
+            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+            borderWidth: 1
+        }]
+    };
+
+    var options ={
+        scales:{
+            y:{
+                beginAtZero: true
+            }
+        }
+    };
+
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    });
+
+</script>

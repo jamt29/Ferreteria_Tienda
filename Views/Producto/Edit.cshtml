@@ -1,0 +1,65 @@
+﻿@model Ferreteria.Models.Producto
+
+@{
+    ViewData["Title"] = "Edit";
+    ViewBag.OcultarHeader = true;
+}
+
+<header class="bg-warning py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Editar Producto <i class="bi bi-pencil-square"></i></h1>
+         </div>
+    </div>
+</header>
+
+
+<div class="container mt-5">
+<div class=" row justify-content-center align-content-center">
+    <div class="col-md-4 shadowEfect mb-3 pt-3 pb-3">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ImgUrl" class="control-label"></label>
+                <input asp-for="ImgUrl" class="form-control" />
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartamentoId" class="control-label">Departamento</label>
+                <select asp-for="DepartamentoId" class="form-control" asp-items="ViewBag.DepartamentoId"></select>
+                <span asp-validation-for="DepartamentoId" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" id="btnEditar" class="btn btn-primary" style="display: none" />
+            </div>
+        </form>
+        <div class="justify-content-center text-center">
+             <button class="btn btn-primary ml-1" onclick="confirmarEdicion()"><i class="fas fa-pen-to-square fa-1x text-gray-300"></i>Editar</button>
+            <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

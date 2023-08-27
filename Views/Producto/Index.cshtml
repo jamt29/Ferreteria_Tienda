@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Ferreteria.Models.Producto>
+
+
+@{
+    ViewData["Title"] = "Index";
+    ViewBag.OcultarHeader = true;
+}
+
+
+
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Administrar Productos  <i class="bi bi-gear-wide-connected"></i></h1>
+         </div>
+    </div>
+</header>
+
+
+<div class="container mt-4 mb-4 justify-content-between" style="display: flex">
+        <a asp-action="Create" class="btn btn-outline-success">Agregar Producto</a>
+        <a asp-controller="Cliente" asp-action="Productos" class="btn btn-outline-primary">Vista Cliente</a> 
+</div>
+
+
+
+@foreach(var depas in Model.GroupBy(p => p.Departamento) ){
+                    
+<section class="container mb-5" style="background-color: #eee; border-radius: 25px">
+  <div class="container py-5">
+      <h3>@depas.Key.Nombre</h3>
+    <div class="row justify-content-center">
+        @foreach (var producto in depas)
+            {
+
+                   <div class="col-md-8 col-lg-6 col-xl-4 mb-4">
+            <div class="card text-black">
+              <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+              <div class="text-center justify-content-center">
+                <img src="@producto.ImgUrl" style="width: 326px; height: 217px" class="card-img-top" alt="" />
+              </div>
+              <div class="card-body">
+                <div class="text-center">
+                  <h5 class="card-title">@producto.Nombre</h5>
+                  <p class="text-muted mb-4">@producto.Descripcion</p>
+                </div>
+                <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                  <span>Total</span><span>$@producto.Precio</span>
+                </div>
+                <div class="d-flex justify-content-center total font-weight-bold mt-4">
+                  <a asp-controller="Producto" asp-action="Edit" asp-route-id="@producto.Id" class="btn btn-outline-warning m-1" >Editar</a>
+                  <a asp-controller="Producto" asp-action="Delete" asp-route-id="@producto.Id" class="btn btn-outline-danger m-1" >Eliminar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+                   
+                </div>
+            </div>
+        </section>
+
+
+}
+                     

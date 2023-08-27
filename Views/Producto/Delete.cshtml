@@ -1,0 +1,56 @@
+﻿@model Ferreteria.Models.Producto
+
+@{
+    ViewData["Title"] = "Delete";
+    ViewBag.OcultarHeader = true;
+}
+
+<header class="bg-danger py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Eliminar Producto <i class="bi bi-trash"></i></h1>
+         </div>
+    </div>
+</header>
+
+
+
+<div class="container mt-5 text-center">
+    <h4>Producto</h4>
+    <hr />
+        <table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">@Model.ImgUrl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Nombre</th>
+      <td>@Model.Nombre</td>
+    </tr>
+    <tr>
+      <th scope="row">Precio</th>
+      <td>@Model.Precio</td>
+    </tr>
+    <tr>
+      <th scope="row">Descripcion</th>
+      <td colspan="2">@Model.Descripcion</td>
+    </tr>
+    <tr>
+      <th scope="row">Departamento</th>
+      <td colspan="2">@Model.Departamento</td>
+    </tr>
+  </tbody>
+</table>
+    <div>
+        <button class="btn btn-danger ml-1" onclick="confirmarBorrado()">Borrar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Lista Principal</a>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" id="btnBorrar" class="btn btn-danger" style="display: none"/> 
+    </form>
+</div>

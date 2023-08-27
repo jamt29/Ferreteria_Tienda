@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Ferreteria.Models.Departamento>
+
+@{
+    ViewData["Title"] = "Index";
+    ViewBag.OcultarHeader = true;
+}
+
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Administrar Departamentos  <i class="bi bi-gear-wide-connected"></i></h1>
+         </div>
+    </div>
+</header>
+
+<div class="container mt-4">
+    
+    <div class="justify-content-between mb-5" style="display: flex">
+    <a asp-action="Create" class="btn btn-outline-success">Agregar Departamento</a>
+    <a asp-controller="Cliente" asp-action="Departamentos" class="btn btn-outline-primary">Vista cliente</a>
+    </div>
+
+                   
+<section style="background-color: #eee; border-radius: 25px;">
+        <div class="container py-5">
+    <div class="row justify-content-center">
+                    
+@foreach (var item in Model)
+    {
+
+      <div class="col-md-8 col-lg-6 col-xl-4 mb-5">
+        <div class="card text-black">
+          <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+          <img src="@item.ImgUrl"
+            class="card-img-top" style="width: 326px; height: 217px; object-fit:cover "  alt="" />
+          <div class="card-body">
+            <div class="text-center">
+              <h5 class="card-title">@item.Nombre</h5>
+            </div>
+            <div class="d-flex justify-content-center total font-weight-bold mt-4">
+              <a asp-controller="Departamento" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning m-1" >Editar</a>
+              <a asp-controller="Departamento" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger m-1" >Eliminar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+}
+    </div>
+  </div>
+                 
+        </section>
+</div>

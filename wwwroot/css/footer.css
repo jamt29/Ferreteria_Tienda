@@ -1,0 +1,132 @@
+﻿
+/* footer section start*/
+
+.footer_section {
+    width: 100%;
+    float: left;
+    background-color: #355764;
+    height: auto;
+    background-size: cover;
+}
+
+.map_main {
+    width: 100%;
+    float: left;
+}
+
+.call_text {
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    color: #dfdfdf;
+    padding-top: 10px;
+}
+
+.email_text {
+    width: 70%;
+    float: left;
+    font-size: 16px;
+    color: #9e9c9c;
+    background-color: #ffffff;
+    padding: 8px 15px;
+    margin-top: 40px;
+    border: 0px;
+}
+
+.subscribe_bt {
+    width: 180px;
+    float: left;
+    margin-top: 15px;
+}
+
+    .subscribe_bt a {
+        width: 100%;
+        float: left;
+        font-size: 16px;
+        color: #ffffff;
+        text-align: center;
+        background-color: #f7c17b;
+        padding: 8px;
+        margin-top: 20px;
+    }
+
+        .subscribe_bt a:hover {
+            color: #9e9c9c;
+            background-color: #ffffff;
+        }
+
+
+
+
+.call_text a {
+    color: #dfdfdf;
+}
+
+    .call_text a:hover {
+        color: #f7c17b;
+    }
+
+.padding_left_0 {
+    padding-left: 15px;
+}
+
+.social_icon {
+    width: 100%;
+    float: left;
+    padding-top: 20px;
+}
+
+    .social_icon ul {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .social_icon li {
+        float: left;
+        padding-right: 10px;
+        padding-top: 10px;
+        list-style: none;
+    }
+
+.copyright_section {
+    width: 100%;
+    float: left;
+    background-color: #ffffff;
+    height: auto;
+}
+
+.copyright_text {
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    text-align: center;
+    color: #151515;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+    .copyright_text a {
+        color: #151515;
+    }
+
+        .copyright_text a:hover {
+            color: #f7c17b;
+        }
+
+.margin_top_90 {
+    margin-top: 90px;
+}
+
+.margin_90 {
+    margin: 90px 0px;
+}
+
+#navbarSupportedContent {
+    transform: translateX(100vw);
+}
+
+    #navbarSupportedContent.nav-normal {
+        transform: none;
+    }
+
+/* contact section end*/

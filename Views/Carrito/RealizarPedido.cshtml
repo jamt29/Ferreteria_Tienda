@@ -1,0 +1,43 @@
+﻿@model ResumenCompraViewModel
+
+@{
+    ViewData["Title"] = "RealizarPedido";
+    ViewBag.OcultarHeader = true;
+}
+
+<div class="text-center">
+    <h1>Resumen de compras</h1>
+</div>
+
+<div class="container px-4 px-lg-5 mt-5 text-center shadowEfect">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        @if (Model.Productos.Count > 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>   
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var producto in Model.Productos)
+                    {
+                        <tr>                           
+                            <td>@producto.Nombre</td>
+                            <td>$@producto.Precio</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h3 class="text-center">Total: $@Model.Total</h3>
+            <a class="btn btn-outline-primary" asp-controller="Carrito" asp-action="ConfirmarPedido">Confirmar pedido</a>
+        }
+        else
+        {
+            <p>No hay productos en el carrito.</p>
+        }
+    </div>
+</div>

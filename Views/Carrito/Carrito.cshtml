@@ -1,0 +1,75 @@
+﻿@model List<Producto>
+
+@{
+    ViewData["Title"] = "RealizarPedido";
+    ViewBag.OcultarHeader = true;
+}
+
+<div class="text-center mt-2">
+    <h1>Carrito de compras</h1>
+</div>
+
+@if (Model.Count > 0)
+{
+    <div class="container px-4 px-lg-5 mt-5 mb-4 text-center shadowEfect">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var producto in Model)
+            {
+                <div class="col mb-5 mt-3">
+                    <div class="card h-100 p-2 shadowEfectCard">
+                        <!-- Sale badge-->
+                        <!-- Product image-->
+                        <img class="m-2 shadowEfect p-2" src="@producto.ImgUrl" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@producto.Nombre</h5>
+                                <!-- Product price-->
+                                $@producto.Precio
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a href="javascript:void(0)" class="btn btn-outline-danger" onclick="eliminarDelCarrito(@producto.Id)">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }           
+        </div>
+        <div>
+            <p>
+                <h3>Total:</h3> <h4>$@Model.Sum(producto => producto.Precio).00</h4>
+            </p>
+            <div>
+                <a href="@Url.Action("RealizarPedido", "Carrito")" class="btn btn-primary mb-4">Realizar Pedido</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <p>No hay productos en el carrito</p>
+    </div>
+}
+
+<script>
+    function eliminarDelCarrito(productoId) {
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = '@Url.Action("EliminarDelCarrito", "Carrito")';
+
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'productoId';
+        input.value = productoId;
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+  

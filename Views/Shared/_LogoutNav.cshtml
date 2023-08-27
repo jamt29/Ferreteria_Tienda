@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+	@if (SignInManager.IsSignedIn(User))
+	{
+	  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle" style="font-size:18px"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li class="text-center">
+		      <p style="color:darkred">Bienvenido </p>
+			  <i class="bi bi-person-badge" style="font-size:30px"></i>
+			  <p style="color:darkblue">@User.Identity.Name</p>
+	    </li>
+		<li class="align-content-center justify-content-center">
+			<form class="form-inline justify-content-center" asp-action="Logout" asp-controller="Usuarios">
+				<button class="btn btn-outline-dark ml-1" type="submit">
+					Cerrar sesión
+				</button>
+			</form>
+	    </li>
+		<li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
+      </ul>
+   </li>
+	}
+	else
+	{
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person" style="font-size:18px"></i> Cuenta</a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+		<li><a asp-controller="Usuarios" asp-action="Login" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Iniciar Sesion</p> </a>
+		    <a asp-action="Registro" asp-controller="Usuarios" class="me-1 border rounded py-1 px-3 nav link d-flex align-items-center"><i class="bi bi-person-fill-add" style="font-size:20px"></i><p class="d-none d-md-block mb-0"> Registrarse</p></a>
+		</li>
+      </ul>
+   </li>
+	}
+
+@*<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+   <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#!">Iniciar sesion</a></li>
+        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="#!">Logout</a></li>
+      </ul>
+   </li>
+</ul>*@

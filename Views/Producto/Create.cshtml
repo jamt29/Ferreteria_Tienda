@@ -1,0 +1,87 @@
+﻿@model Ferreteria.Models.Producto
+
+@{
+    ViewData["Title"] = "Create";
+    ViewBag.OcultarHeader = true;
+}
+
+
+<header class="bg-success py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Agregar Producto <i class="bi bi-plus-square"></i></h1>
+         </div>
+    </div>
+</header>
+
+
+
+<div class="container mt-5 align-content-center" >
+    <div class="row justify-content-center align-content-center">
+    <div class="col-md-4 shadowEfect m-3">
+
+        <form asp-action="Create" id="form" enctype="multipart/form-data" method="post" class="m-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display: none">
+                <label asp-for="ImgUrl" class="control-label"></label>
+                <input asp-for="ImgUrl" class="form-control" />
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+            </div>
+             <div class="form-group text-center">
+                    <label class="mr-4">Imagen:</label>
+                    <img id="imagenPreview" class="shadowEfect p-3" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 200px; margin-bottom: 20px;" />
+                    <input type="file" name="ImagenArchivo" class="form-control" accept=".jpg, .jpeg, .png" onchange="previewImage(this)" required />
+             </div>
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" required/>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                    <input asp-for="Precio" name="precio" id="precio" placeholder="$" class="form-control" required/>
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" class="form-control" rows="3" maxlength="40" required></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartamentoId" class="control-label">Departamento</label>
+                <select asp-for="DepartamentoId" class ="form-control" asp-items="ViewBag.DepartamentoId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnCrear" value="Create" class="btn btn-primary" style="display: none" />
+            </div>
+        </form>
+    <div class="justify-content-center text-center mb-4">
+        <button class="btn btn-outline-success ml-1" onclick="confirmarCrear()" >Crear</button>
+        <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagenPreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+</script>
+
+}
+

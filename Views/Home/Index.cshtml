@@ -1,0 +1,162 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
+}
+
+
+    <link rel="stylesheet" href="~/css/footer.css" />
+
+
+<!-- detail section -->
+<section class="detail_section">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-lg-3">
+                <div class="detail_img-box">
+                    <img src="images/man.png" alt="" class="w-100" />
+                </div>
+            </div>
+            <div class=" col-lg-7">
+                <div class="detail_container justify-content-center">
+                    <div class="detail-box d-box-1">
+                        <a href="">
+                            <div class="detail-content">
+                                <img src="images/taladro.png" alt="" />
+                                <h5>
+                                    Herramientas
+                                    <br />
+                                    Electricas
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="detail-box d-box-2" style="background-color: #c7dfc5">
+                        <a href="">
+                            <div class="detail-content">
+                                <img src="images/foco.png" alt="" />
+                                <h5 class="text-dark">
+                                    Iluminacion
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="detail-box d-box-3" style="background-color: #c1dbe3;">
+                        <a href="">
+                            <div class="detail-content">
+                                <img src="images/ventilador.png" alt="" />
+                                <h5 class="text-dark">
+                                    Ventilacion
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="detail-box d-box-4">
+                        <a href="">
+                            <div class="detail-content">
+                                <img src="images/pintura.png" alt="" />
+                                <h5>
+                                    Pinturas
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end detail section -->
+
+        <section class="py-5">
+            <h2 class="text-center" style="font-family: 'Lucida Fax'">Productos mas vendidos <i class="bi bi-fire"></i></h2>
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    @foreach (var item in ViewBag.productos)
+            {
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <div class="text-center justify-content-center">
+                                <img class="card-img-top" src="@item.ImgUrl" style="width: 100px; height: 75px; object-fit: cover" />
+                            </div>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">@item.Nombre</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    $@item.Precio.00
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                @if (carrito != null && carrito.Contains(item.Id))
+                            {
+                                <button disable class="btn btn-outline-danger disabled">En carrito</button>
+                            }
+                            else
+                            {
+                                <a href="javascript:void(0)" class="btn btn-primary text-white mb-2" onclick="agregarAlCarrito(@item.Id)"><i class="fas fa-cart-plus fa-1x"></i>Añadir al carrito</a>
+                            }
+                            </div>
+                        </div>
+                    </div>
+            }
+                </div>
+            </div>
+        </section>
+              <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-lg-8 col-sm-12 padding_0">
+                  <div class="map_main">
+                     <div class="map-responsive">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d242.27075287859859!2d-89.21961910841357!3d13.698328336891086!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6330449b16f5f9%3A0xd93b7f5f4dbc0cb0!2sEdificio%20Aulas%20%22D%22%20UFG%2C%20Av.%20Ol%C3%ADmpica%2C%20San%20Salvador!5e0!3m2!1ses!2ssv!4v1688486698158!5m2!1ses!2ssv" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>                       
+                     </div>
+                  </div>
+               </div>
+                <div class="col-lg-4 col-sm-12">
+                  <div class="call_text"><a href="#"><img src="images/map-icon.png"><span class="padding_left_0">Page when looking at its layou</span></a></div>
+                  <div class="call_text"><a href="#"><img src="images/call-icon.png"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
+                  <div class="call_text"><a href="#"><img src="images/mail-icon.png"><span class="padding_left_0">demo@gmail.com</span></a></div>
+                  <div class="social_icon">
+                     <ul>
+                        <li><a href="#"><img src="images/fb-icon1.png"></a></li>
+                        <li><a href="#"><img src="images/twitter-icon.png"></a></li>
+                        <li><a href="#"><img src="images/linkedin-icon.png"></a></li>
+                     </ul>
+                  </div>
+                  <input type="text" class="email_text" placeholder="Enter Your Email" name="Enter Your Email">
+                  <div class="subscribe_bt"><a href="#">Subscribe</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- footer section end -->
+
+
+<script>
+    function agregarAlCarrito(productoId) {
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = '@Url.Action("AgregarAlCarrito", "Carrito")';
+
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'productoId';
+        input.value = productoId;
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
